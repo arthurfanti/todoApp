@@ -5,11 +5,12 @@ const handleTodo = (state, action) => {
         id: action.id,
         text: action.text,
         completed: false
-      }
+      };
     case 'TOGGLE_TODO':
       if (state.id !== action.id) {
         return state
-      }
+      };
+      
       return {
         ...state,
         completed: !state.completed
