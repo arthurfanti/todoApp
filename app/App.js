@@ -1,9 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
 
 const HelloReact = () => {
   return (
-    <h1>Hello React!<small>don't forget the redux stuff...</small></h1>
+    <MuiThemeProvider>
+      <AppBar
+        title="Title"
+        iconClassNameRight="muidocs-icon-navigation-expand-more"
+      />
+    </MuiThemeProvider>
   )
 }
 
