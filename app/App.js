@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
 
 import appStore from './stores/app'
+import { getVisibleTodos } from './reducers/visibilityFilter'
 
 import AddTodo from './components/addTodo'
+import TodoList from './components/todoList'
 import Footer from './components/footer'
 
 const render = () => {
@@ -16,16 +16,24 @@ const render = () => {
 }
 
 const HelloReact = () => {
+  const visibleTodos = getVisibleTodos(
+    appStore.getState().todos,
+    appStore.getState().visibilityFilter
+  )
+
   return (
-    <MuiThemeProvider>
-      <div>
-        <AddTodo
-          todos={appStore.getState().todos}
-          visibilityFilter={appStore.getState().visibilityFilter}
-        />
-        <Footer />
-      </div>
-    </MuiThemeProvider>
+    <div>
+      <AddTodo />
+      <TodoList todos={visibleTodos}
+        onTodoClick={id =>
+          appStore.dispatch({
+            type: 'TOGGLE_TODO',
+            id
+          })
+        }
+      />
+      <Footer />
+    </div>
   )
 }
 
