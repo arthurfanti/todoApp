@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 import appStore from '../stores/app'
 import { getVisibleTodos } from '../reducers/visibilityFilter'
@@ -11,9 +11,10 @@ class  AddTodo extends React.Component {
       this.props.todos,
       this.props.visibilityFilter
     )
-    
+
     return (
       <div>
+
         <input ref={node=> {
           this.input = node
         }} />
