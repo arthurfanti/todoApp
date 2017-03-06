@@ -4,6 +4,13 @@ import appStore from '../stores/app'
 import Link from '../components/link'
 
 class FilterLink extends React.Component {
+  componentDidMount() {
+    this.unsubscribe = appStore.subscribe(() => this.forceUpdate())
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe()
+  }
   render() {
     const props = this.props
     const { visibilityFilter } = appStore.getState()
