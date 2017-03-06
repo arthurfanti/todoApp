@@ -6,6 +6,7 @@ import AppBar from 'material-ui/AppBar';
 import appStore from './stores/app'
 
 import AddTodo from './components/addTodo'
+import Footer from './components/footer'
 
 const render = () => {
   ReactDOM.render(
@@ -16,7 +17,15 @@ const render = () => {
 
 const HelloReact = () => {
   return (
-    <AddTodo todos={appStore.getState().todos} />
+    <MuiThemeProvider>
+      <div>
+        <AddTodo
+          todos={appStore.getState().todos}
+          visibilityFilter={appStore.getState().visibilityFilter}
+        />
+        <Footer />
+      </div>
+    </MuiThemeProvider>
   )
 }
 

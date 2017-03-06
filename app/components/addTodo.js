@@ -2,10 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import appStore from '../stores/app'
+import { getVisibleTodos } from '../reducers/visibilityFilter'
 
 let nextTodoId = 0
 class  AddTodo extends React.Component {
   render() {
+    const visibleTodos = getVisibleTodos(
+      this.props.todos,
+      this.props.visibilityFilter
+    )
+    
     return (
       <div>
         <input ref={node=> {
@@ -22,7 +28,7 @@ class  AddTodo extends React.Component {
           Add Todo
         </button>
         <ul>
-          {this.props.todos.map(t =>
+          {visibleTodos.map(t =>
             <li key={t.id}
               onClick={() => {
                 appStore.dispatch({
