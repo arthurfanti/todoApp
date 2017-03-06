@@ -1,17 +1,17 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-import appStore from '../stores/app'
-
-let input
 let nextTodoId = 0
-const AddTodo = () => {
+let AddTodo = ({ dispatch }) => {
+  let input
+
   return (
     <div>
       <input ref={node=> {
         input = node
       }} />
       <button onClick={() => {
-        appStore.dispatch({
+        dispatch({
           type: 'ADD_TODO',
           id: nextTodoId++,
           text: input.value
@@ -24,4 +24,4 @@ const AddTodo = () => {
   )
 }
 
-export default AddTodo
+export default AddTodo = connect()(AddTodo)

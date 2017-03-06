@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
 
 import FilterLink from '../containers/filterLink'
 
