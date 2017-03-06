@@ -38,14 +38,7 @@ const HelloReact = () => {
           })
         }
       />
-      <Footer visibilityFilter={visibilityFilter}
-        onFilterClick={filter =>
-          appStore.dispatch({
-            type: 'SET_VISIBILITY_FILTER',
-            filter
-          })
-        }
-      />
+      <Footer />
     </div>
   )
 }
