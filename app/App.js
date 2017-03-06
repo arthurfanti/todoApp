@@ -15,15 +15,21 @@ const render = () => {
   )
 }
 
+let nextTodoId = 0
 const HelloReact = () => {
-  const visibleTodos = getVisibleTodos(
-    appStore.getState().todos,
-    appStore.getState().visibilityFilter
-  )
+  const { todos, visibilityFilter } = appStore.getState()
+  const visibleTodos = getVisibleTodos(todos, visibilityFilter)
 
   return (
     <div>
-      <AddTodo />
+      <AddTodo onAddClick={text =>
+        appStore.dispatch({
+          type: 'ADD_TODO',
+          id: nextTodoId++,
+          text
+
+        })
+      } />
       <TodoList todos={visibleTodos}
         onTodoClick={id =>
           appStore.dispatch({
@@ -32,7 +38,14 @@ const HelloReact = () => {
           })
         }
       />
-      <Footer />
+      <Footer visibilityFilter={visibilityFilter}
+        onFilterClick={filter =>
+          appStore.dispatch({
+            type: 'SET_VISIBILITY_FILTER',
+            filter
+          })
+        }
+      />
     </div>
   )
 }

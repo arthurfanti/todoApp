@@ -3,22 +3,23 @@ import ReactDOM from 'react-dom';
 
 import appStore from '../stores/app'
 
-class FilterLink extends React.Component {
-  render() {
+const FilterLink = ({ filter, currentFilter, children, onClick }) => {
+  if (filter === currentFilter) {
     return (
-      <a href='#'
-        onClick={(e) => {
-          e.preventDefault()
-          appStore.dispatch({
-            type: 'SET_VISIBILITY_FILTER',
-            filter: this.props.filter
-          })
-        }}
-        style={{
-          padding: '2px 4px'
-        }}>{this.props.children}</a>
+      <span>{children}</span>
     )
   }
+
+  return (
+    <a href='#'
+      onClick={(e) => {
+        e.preventDefault()
+        onClick(filter)
+      }}
+      style={{
+        padding: '2px 4px'
+      }}>{children}</a>
+  )
 }
 
 export default FilterLink
